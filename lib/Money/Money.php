@@ -10,7 +10,7 @@
 
 namespace Money;
 
-class Money
+class Money implements \Serializable
 {
     const ROUND_HALF_UP = PHP_ROUND_HALF_UP;
     const ROUND_HALF_DOWN = PHP_ROUND_HALF_DOWN;
@@ -50,6 +50,22 @@ class Money
     public static function __callStatic($method, $arguments)
     {
         return new Money($arguments[0], new Currency($method));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function serialize()
+    {
+        return serialize([$this->amount, $this->currency]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function unserialize($serialized)
+    {
+        list($this->amount, $this->currency) = unserialize($serialized);
     }
 
     /**

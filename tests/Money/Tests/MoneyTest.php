@@ -236,4 +236,10 @@ class MoneyTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals($units, Money::stringToUnits($string));
     }
+
+    public function testSerializable()
+    {
+        $m = new Money(5, new Currency('EUR'));
+        $this->assertEquals($m, unserialize(serialize($m)));
+    }
 }

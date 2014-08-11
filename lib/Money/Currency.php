@@ -10,7 +10,7 @@
 
 namespace Money;
 
-class Currency
+class Currency implements \Serializable
 {
     /** @var string */
     private $name;
@@ -34,6 +34,21 @@ class Currency
         $this->name = $name;
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function serialize()
+    {
+        return serialize([$this->name]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function unserialize($serialized)
+    {
+        list($this->name) = unserialize($serialized);
+    }
 
     /**
      * @return string

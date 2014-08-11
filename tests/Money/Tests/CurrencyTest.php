@@ -48,4 +48,9 @@ class CurrencyTest extends PHPUnit_Framework_TestCase
     {
         new Currency('unknown');
     }
+
+    public function testSerializable()
+    {
+        $this->assertEquals($this->euro1, unserialize(serialize($this->euro1)));
+    }
 }
