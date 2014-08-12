@@ -120,7 +120,7 @@ class MoneyTest extends PHPUnit_Framework_TestCase
         );
         $this->assertEquals(
             new Money(1, new Currency('EUR')),
-            $m->multiply(1.5, Money::ROUND_HALF_DOWN)
+            $m->multiply(1.5, PHP_ROUND_HALF_DOWN)
         );
 
         $this->assertNotSame($m, $m->multiply(2));
@@ -135,11 +135,11 @@ class MoneyTest extends PHPUnit_Framework_TestCase
         );
         $this->assertEquals(
             new Money(2, new Currency('EUR')),
-            $m->divide(4, Money::ROUND_HALF_EVEN)
+            $m->divide(4, PHP_ROUND_HALF_EVEN)
         );
         $this->assertEquals(
             new Money(3, new Currency('EUR')),
-            $m->divide(3, Money::ROUND_HALF_ODD)
+            $m->divide(3, PHP_ROUND_HALF_ODD)
         );
 
         $this->assertNotSame($m, $m->divide(2));

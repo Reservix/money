@@ -72,7 +72,7 @@ interface MoneyInterface
      *
      * @return Money
      */
-    public function multiply($multiplier, $rounding_mode = Money::ROUND_HALF_UP);
+    public function multiply($multiplier, $rounding_mode = PHP_ROUND_HALF_UP);
 
     /**
      * @param $divisor
@@ -80,7 +80,7 @@ interface MoneyInterface
      *
      * @return Money
      */
-    public function divide($divisor, $rounding_mode = Money::ROUND_HALF_UP);
+    public function divide($divisor, $rounding_mode = PHP_ROUND_HALF_UP);
 
     /**
      * Allocate the money according to a list of ratio's

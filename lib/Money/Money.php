@@ -12,11 +12,6 @@ namespace Money;
 
 class Money implements MoneyInterface, \Serializable
 {
-    const ROUND_HALF_UP = PHP_ROUND_HALF_UP;
-    const ROUND_HALF_DOWN = PHP_ROUND_HALF_DOWN;
-    const ROUND_HALF_EVEN = PHP_ROUND_HALF_EVEN;
-    const ROUND_HALF_ODD = PHP_ROUND_HALF_ODD;
-
     /**
      * @var int
      */
@@ -92,8 +87,7 @@ class Money implements MoneyInterface, \Serializable
     public function equals(Money $other)
     {
         return
-            $other instanceof Money
-            && $this->isSameCurrency($other)
+            $this->isSameCurrency($other)
             && $this->amount === $other->amount;
     }
 
@@ -179,7 +173,7 @@ class Money implements MoneyInterface, \Serializable
      */
     private function assertRoundingMode($rounding_mode)
     {
-        if (!in_array($rounding_mode, array(self::ROUND_HALF_DOWN, self::ROUND_HALF_EVEN, self::ROUND_HALF_ODD, self::ROUND_HALF_UP))) {
+        if (!in_array($rounding_mode, array(PHP_ROUND_HALF_DOWN, PHP_ROUND_HALF_EVEN, PHP_ROUND_HALF_ODD, PHP_ROUND_HALF_UP))) {
             throw new InvalidArgumentException('Rounding mode should be Money::ROUND_HALF_DOWN | Money::ROUND_HALF_EVEN | Money::ROUND_HALF_ODD | Money::ROUND_HALF_UP');
         }
     }
@@ -187,7 +181,7 @@ class Money implements MoneyInterface, \Serializable
     /**
      * {@inheritdoc}
      */
-    public function multiply($multiplier, $rounding_mode = self::ROUND_HALF_UP)
+    public function multiply($multiplier, $rounding_mode = PHP_ROUND_HALF_UP)
     {
         $this->assertOperand($multiplier);
         $this->assertRoundingMode($rounding_mode);
@@ -200,7 +194,7 @@ class Money implements MoneyInterface, \Serializable
     /**
      * {@inheritdoc}
      */
-    public function divide($divisor, $rounding_mode = self::ROUND_HALF_UP)
+    public function divide($divisor, $rounding_mode = PHP_ROUND_HALF_UP)
     {
         $this->assertOperand($divisor);
         $this->assertRoundingMode($rounding_mode);
