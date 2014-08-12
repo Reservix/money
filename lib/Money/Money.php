@@ -10,7 +10,7 @@
 
 namespace Money;
 
-class Money implements \Serializable
+class Money implements MoneyInterface, \Serializable
 {
     const ROUND_HALF_UP = PHP_ROUND_HALF_UP;
     const ROUND_HALF_DOWN = PHP_ROUND_HALF_DOWN;
@@ -69,8 +69,7 @@ class Money implements \Serializable
     }
 
     /**
-     * @param \Money\Money $other
-     * @return bool
+     * {@inheritdoc}
      */
     public function isSameCurrency(Money $other)
     {
@@ -88,8 +87,7 @@ class Money implements \Serializable
     }
 
     /**
-     * @param \Money\Money $other
-     * @return bool
+     * {@inheritdoc}
      */
     public function equals(Money $other)
     {
@@ -99,8 +97,7 @@ class Money implements \Serializable
     }
 
     /**
-     * @param \Money\Money $other
-     * @return int
+     * {@inheritdoc}
      */
     public function compare(Money $other)
     {
@@ -115,8 +112,7 @@ class Money implements \Serializable
     }
 
     /**
-     * @param \Money\Money $other
-     * @return bool
+     * {@inheritdoc}
      */
     public function greaterThan(Money $other)
     {
@@ -124,8 +120,7 @@ class Money implements \Serializable
     }
 
     /**
-     * @param \Money\Money $other
-     * @return bool
+     * {@inheritdoc}
      */
     public function lessThan(Money $other)
     {
@@ -133,16 +128,7 @@ class Money implements \Serializable
     }
 
     /**
-     * @deprecated Use getAmount() instead
-     * @return int
-     */
-    public function getUnits()
-    {
-        return $this->amount;
-    }
-
-    /**
-     * @return int
+     * {@inheritdoc}
      */
     public function getAmount()
     {
@@ -150,7 +136,7 @@ class Money implements \Serializable
     }
 
     /**
-     * @return \Money\Currency
+     * {@inheritdoc}
      */
     public function getCurrency()
     {
@@ -158,8 +144,7 @@ class Money implements \Serializable
     }
 
     /**
-     * @param \Money\Money $addend
-     *@return \Money\Money 
+     * {@inheritdoc}
      */
     public function add(Money $addend)
     {
@@ -169,8 +154,7 @@ class Money implements \Serializable
     }
 
     /**
-     * @param \Money\Money $subtrahend
-     * @return \Money\Money
+     * {@inheritdoc}
      */
     public function subtract(Money $subtrahend)
     {
@@ -200,9 +184,7 @@ class Money implements \Serializable
     }
 
     /**
-     * @param $multiplier
-     * @param int $rounding_mode
-     * @return \Money\Money
+     * {@inheritdoc}
      */
     public function multiply($multiplier, $rounding_mode = self::ROUND_HALF_UP)
     {
@@ -215,9 +197,7 @@ class Money implements \Serializable
     }
 
     /**
-     * @param $divisor
-     * @param int $rounding_mode
-     * @return \Money\Money
+     * {@inheritdoc}
      */
     public function divide($divisor, $rounding_mode = self::ROUND_HALF_UP)
     {
@@ -230,9 +210,7 @@ class Money implements \Serializable
     }
 
     /**
-     * Allocate the money according to a list of ratio's
-     * @param array $ratios List of ratio's
-     * @return \Money\Money
+     * {@inheritdoc}
      */
     public function allocate(array $ratios)
     {
@@ -253,28 +231,32 @@ class Money implements \Serializable
         return $results;
     }
 
-    /** @return bool */
+    /**
+     * {@inheritdoc}
+     */
     public function isZero()
     {
         return $this->amount === 0;
     }
 
-    /** @return bool */
+    /**
+     * {@inheritdoc}
+     */
     public function isPositive()
     {
         return $this->amount > 0;
     }
 
-    /** @return bool */
+    /**
+     * {@inheritdoc}
+     */
     public function isNegative()
     {
         return $this->amount < 0;
     }
 
     /**
-     * @param $string
-     * @throws \Money\InvalidArgumentException
-     * @return int
+     * {@inheritdoc}
      */
     public static function stringToUnits( $string )
     {
