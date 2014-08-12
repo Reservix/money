@@ -92,8 +92,9 @@ class Money implements MoneyInterface, \Serializable
     public function equals(Money $other)
     {
         return
-            $this->isSameCurrency($other)
-            && $this->amount == $other->amount;
+            $other instanceof Money
+            && $this->isSameCurrency($other)
+            && $this->amount === $other->amount;
     }
 
     /**
@@ -116,7 +117,7 @@ class Money implements MoneyInterface, \Serializable
      */
     public function greaterThan(Money $other)
     {
-        return 1 == $this->compare($other);
+        return 1 === $this->compare($other);
     }
 
     /**
@@ -124,7 +125,7 @@ class Money implements MoneyInterface, \Serializable
      */
     public function lessThan(Money $other)
     {
-        return -1 == $this->compare($other);
+        return -1 === $this->compare($other);
     }
 
     /**

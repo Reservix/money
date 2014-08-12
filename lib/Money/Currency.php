@@ -64,7 +64,7 @@ class Currency implements \Serializable
      */
     public function equals(Currency $other)
     {
-        return $this->name === $other->name;
+        return $other instanceof Currency && $this->name === $other->name;
     }
 
     /**
