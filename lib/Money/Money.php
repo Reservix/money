@@ -259,9 +259,9 @@ class Money implements MoneyInterface, \Serializable
         $digits = "(?P<digits>\d*)";
         $separator = "(?P<separator>[.,])?";
         $decimals = "(?P<decimal1>\d)?(?P<decimal2>\d)?";
-        $pattern = "/".$sign.$digits.$separator.$decimals."/";
+        $pattern = "/^".$sign.$digits.$separator.$decimals."$/";
 
-        if (!preg_match($pattern, $string, $matches)) {
+        if (!preg_match($pattern, trim($string), $matches)) {
             throw new InvalidArgumentException("The value could not be parsed as money");
         }
 
