@@ -115,6 +115,16 @@ class Money implements MoneyInterface, \Serializable
     }
 
     /**
+     * @param \Money\Money $other
+     * @return bool
+     */
+    public function greaterThanOrEqual(Money $other)
+    {
+        return 1 == $this->compare($other)
+            or 0 == $this->compare($other);
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function lessThan(Money $other)
