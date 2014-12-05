@@ -15,10 +15,10 @@ class Money implements MoneyInterface, \Serializable
     /**
      * @var int
      */
-    private $amount;
+    protected $amount;
 
     /** @var \Money\Currency */
-    private $currency;
+    protected $currency;
 
     /**
      * Create a Money instance
