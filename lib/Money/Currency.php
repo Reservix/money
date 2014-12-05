@@ -39,7 +39,7 @@ class Currency implements \Serializable
      */
     public function serialize()
     {
-        return serialize([$this->name]);
+        return serialize($this->name);
     }
 
     /**
@@ -47,7 +47,7 @@ class Currency implements \Serializable
      */
     public function unserialize($serialized)
     {
-        list($this->name) = unserialize($serialized);
+        $this->name = unserialize($serialized);
     }
 
     /**
