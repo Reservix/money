@@ -20,18 +20,14 @@ class Currency implements \Serializable
 
     /**
      * @param string $name
-     * @throws UnknownCurrencyException
      */
     public function __construct($name)
     {
         if(!isset(static::$currencies)) {
-           static::$currencies = require __DIR__.'/currencies.php';
+            static::$currencies = require __DIR__.'/currencies.php';
         }
 
-        if (!array_key_exists($name, static::$currencies)) {
-            throw new UnknownCurrencyException($name);
-        }
-        $this->name = $name;
+        $this->setName($name);
     }
 
     /**
@@ -48,6 +44,24 @@ class Currency implements \Serializable
     public function unserialize($serialized)
     {
         $this->name = unserialize($serialized);
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return $this
+     *
+     * @throws UnknownCurrencyException
+     */
+    public function setName($name)
+    {
+        if (!array_key_exists($name, static::$currencies)) {
+            throw new UnknownCurrencyException($name);
+        }
+
+        $this->name = $name;
+
+        return $this;
     }
 
     /**
