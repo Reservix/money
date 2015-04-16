@@ -68,7 +68,7 @@ class Money implements MoneyInterface, \Serializable
      */
     public function isSameCurrency(MoneyInterface $other)
     {
-        return $this->currency->equals($other->currency);
+        return $this->currency->equals($other->getCurrency());
     }
 
     /**
@@ -88,7 +88,7 @@ class Money implements MoneyInterface, \Serializable
     {
         return
             $this->isSameCurrency($other)
-            && $this->amount === $other->amount;
+            && $this->amount === $other->getAmount();
     }
 
     /**
@@ -97,9 +97,9 @@ class Money implements MoneyInterface, \Serializable
     public function compare(MoneyInterface $other)
     {
         $this->assertSameCurrency($other);
-        if ($this->amount < $other->amount) {
+        if ($this->amount < $other->getAmount()) {
             return -1;
-        } elseif ($this->amount == $other->amount) {
+        } elseif ($this->amount == $other->getAmount()) {
             return 0;
         } else {
             return 1;
@@ -163,7 +163,7 @@ class Money implements MoneyInterface, \Serializable
     {
         $this->assertSameCurrency($addend);
 
-        return new self($this->amount + $addend->amount, $this->currency);
+        return new self($this->amount + $addend->getAmount(), $this->currency);
     }
 
     /**
@@ -173,7 +173,7 @@ class Money implements MoneyInterface, \Serializable
     {
         $this->assertSameCurrency($subtrahend);
 
-        return new self($this->amount - $subtrahend->amount, $this->currency);
+        return new self($this->amount - $subtrahend->getAmount(), $this->currency);
     }
 
     /**

@@ -78,7 +78,7 @@ class Currency implements \Serializable
      */
     public function equals(Currency $other)
     {
-        return $this->name === $other->name;
+        return $this->name === $other->getName();
     }
 
     /**
