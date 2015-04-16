@@ -8,39 +8,53 @@ namespace Money;
 interface MoneyInterface
 {
     /**
-     * @param Money $other
+     * @param MoneyInterface $other
      *
      * @return bool
      */
-    public function isSameCurrency(Money $other);
+    public function isSameCurrency(MoneyInterface $other);
 
     /**
-     * @param Money $other
+     * @param MoneyInterface $other
      *
      * @return bool
      */
-    public function equals(Money $other);
+    public function equals(MoneyInterface $other);
 
     /**
-     * @param Money $other
+     * @param MoneyInterface $other
      *
      * @return int
      */
-    public function compare(Money $other);
+    public function compare(MoneyInterface $other);
 
     /**
-     * @param Money $other
+     * @param MoneyInterface $other
      *
      * @return bool
      */
-    public function greaterThan(Money $other);
+    public function greaterThan(MoneyInterface $other);
 
     /**
-     * @param Money $other
+     * @param MoneyInterface $other
      *
      * @return bool
      */
-    public function lessThan(Money $other);
+    public function greaterThanOrEqual(MoneyInterface $other);
+
+    /**
+     * @param MoneyInterface $other
+     *
+     * @return bool
+     */
+    public function lessThan(MoneyInterface $other);
+
+    /**
+     * @param MoneyInterface $other
+     *
+     * @return bool
+     */
+    public function lessThanOrEqual(MoneyInterface $other);
 
     /**
      * @return int
@@ -53,18 +67,18 @@ interface MoneyInterface
     public function getCurrency();
 
     /**
-     * @param Money $addend
+     * @param MoneyInterface $addend
      *
      * @return Money
      */
-    public function add(Money $addend);
+    public function add(MoneyInterface $addend);
 
     /**
-     * @param Money $subtrahend
+     * @param MoneyInterface $subtrahend
      *
      * @return Money
      */
-    public function subtract(Money $subtrahend);
+    public function subtract(MoneyInterface $subtrahend);
 
     /**
      * @param $multiplier

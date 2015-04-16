@@ -66,7 +66,7 @@ class Money implements MoneyInterface, \Serializable
     /**
      * {@inheritdoc}
      */
-    public function isSameCurrency(Money $other)
+    public function isSameCurrency(MoneyInterface $other)
     {
         return $this->currency->equals($other->currency);
     }
@@ -74,7 +74,7 @@ class Money implements MoneyInterface, \Serializable
     /**
      * @throws \Money\InvalidArgumentException
      */
-    private function assertSameCurrency(Money $other)
+    private function assertSameCurrency(MoneyInterface $other)
     {
         if (!$this->isSameCurrency($other)) {
             throw new InvalidArgumentException('Different currencies');
@@ -84,7 +84,7 @@ class Money implements MoneyInterface, \Serializable
     /**
      * {@inheritdoc}
      */
-    public function equals(Money $other)
+    public function equals(MoneyInterface $other)
     {
         return
             $this->isSameCurrency($other)
@@ -94,7 +94,7 @@ class Money implements MoneyInterface, \Serializable
     /**
      * {@inheritdoc}
      */
-    public function compare(Money $other)
+    public function compare(MoneyInterface $other)
     {
         $this->assertSameCurrency($other);
         if ($this->amount < $other->amount) {
@@ -109,16 +109,15 @@ class Money implements MoneyInterface, \Serializable
     /**
      * {@inheritdoc}
      */
-    public function greaterThan(Money $other)
+    public function greaterThan(MoneyInterface $other)
     {
         return 1 === $this->compare($other);
     }
 
     /**
-     * @param \Money\Money $other
-     * @return bool
+     * {@inheritdoc}
      */
-    public function greaterThanOrEqual(Money $other)
+    public function greaterThanOrEqual(MoneyInterface $other)
     {
         return 1 == $this->compare($other)
             or 0 == $this->compare($other);
@@ -127,16 +126,15 @@ class Money implements MoneyInterface, \Serializable
     /**
      * {@inheritdoc}
      */
-    public function lessThan(Money $other)
+    public function lessThan(MoneyInterface $other)
     {
         return -1 === $this->compare($other);
     }
 
     /**
-     * @param \Money\Money $other
-     * @return bool
+     * {@inheritdoc}
      */
-    public function lessThanOrEqual(Money $other)
+    public function lessThanOrEqual(MoneyInterface $other)
     {
         return -1 == $this->compare($other)
             or 0 == $this->compare($other);
@@ -161,7 +159,7 @@ class Money implements MoneyInterface, \Serializable
     /**
      * {@inheritdoc}
      */
-    public function add(Money $addend)
+    public function add(MoneyInterface $addend)
     {
         $this->assertSameCurrency($addend);
 
@@ -171,7 +169,7 @@ class Money implements MoneyInterface, \Serializable
     /**
      * {@inheritdoc}
      */
-    public function subtract(Money $subtrahend)
+    public function subtract(MoneyInterface $subtrahend)
     {
         $this->assertSameCurrency($subtrahend);
 
