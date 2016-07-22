@@ -62,7 +62,7 @@ interface MoneyInterface
     public function getAmount();
 
     /**
-     * @return Currency
+     * @return CurrencyInterface
      */
     public function getCurrency();
 

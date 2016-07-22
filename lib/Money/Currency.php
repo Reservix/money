@@ -10,7 +10,7 @@
 
 namespace Money;
 
-class Currency implements \Serializable
+class Currency implements \Serializable, CurrencyInterface
 {
     /** @var string */
     protected $name;
@@ -19,7 +19,7 @@ class Currency implements \Serializable
     protected static $currencies;
 
     /**
-     * @param string $name
+     * {@inheritdoc}
      */
     public function __construct($name)
     {
@@ -47,11 +47,7 @@ class Currency implements \Serializable
     }
 
     /**
-     * @param string $name
-     *
-     * @return $this
-     *
-     * @throws UnknownCurrencyException
+     * {@inheritdoc}
      */
     public function setName($name)
     {
@@ -65,7 +61,7 @@ class Currency implements \Serializable
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getName()
     {
@@ -73,16 +69,15 @@ class Currency implements \Serializable
     }
 
     /**
-     * @param \Money\Currency $other
-     * @return bool
+     * {@inheritdoc}
      */
-    public function equals(Currency $other)
+    public function equals(CurrencyInterface $other)
     {
         return $this->name === $other->getName();
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function __toString()
     {

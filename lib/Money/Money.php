@@ -23,10 +23,10 @@ class Money implements MoneyInterface, \Serializable
     /**
      * Create a Money instance
      * @param  integer $amount    Amount, expressed in the smallest units of $currency (eg cents)
-     * @param  \Money\Currency $currency
+     * @param  \Money\CurrencyInterface $currency
      * @throws \Money\InvalidArgumentException
      */
-    public function __construct($amount, Currency $currency)
+    public function __construct($amount, CurrencyInterface $currency)
     {
         if (!is_int($amount)) {
             throw new InvalidArgumentException("The first parameter of Money must be an integer. It's the amount, expressed in the smallest units of currency (eg cents)");
